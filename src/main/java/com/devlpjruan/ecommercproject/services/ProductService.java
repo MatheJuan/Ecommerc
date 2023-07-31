@@ -50,4 +50,10 @@ public class ProductService {
 		entity.setPrice(dto.getPrice());
 		entity.setImgurl(dto.getImgurl());
 	}
+	
+	@Transactional
+	public void delete(Long id) {
+		 productRepository.deleteById(id);
+	}
+	
 }
