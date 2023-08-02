@@ -16,10 +16,10 @@ import jakarta.persistence.Table;
 public class Category {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
 	private String name;
+	
 	@ManyToMany(mappedBy = "categories")
 	private Set<Product> products= new HashSet<>();
 	
@@ -27,7 +27,6 @@ public class Category {
 		}
 	
 	public Category(Long id, String name) {
-		super();
 		this.id = id;
 		this.name = name;
 	}

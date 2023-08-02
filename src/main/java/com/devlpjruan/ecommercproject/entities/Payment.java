@@ -19,20 +19,18 @@ public class Payment {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	private Instant moment;
+	
 	@OneToOne
 	@MapsId
 	private Order order;
-	
-	@OneToOne(mappedBy = "client", cascade = CascadeType.ALL)
-	private Payment payment;
 	
 	public Payment() {
 	}
 
 	public Payment(Long id, Instant moment, Order order) {
-		super();
 		this.id = id;
 		this.moment = moment;
 		this.order = order;
@@ -63,11 +61,6 @@ public class Payment {
 	}
 
 	@Override
-	public int hashCode() {
-		return Objects.hash(id);
-	}
-
-	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
@@ -79,5 +72,8 @@ public class Payment {
 		return Objects.equals(id, other.id);
 	}
 	
-	
+	  @Override
+	    public int hashCode() {
+	        return id != null ? id.hashCode() : 0;
+	    }
 }

@@ -19,43 +19,46 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.devlpjruan.ecommercproject.dto.ProductDto;
 import com.devlpjruan.ecommercproject.services.ProductService;
 
+import jakarta.validation.Valid;
+
 @RestController
-@RequestMapping(value = "/product")
+@RequestMapping(value = "/products")
 public class ProductController {
-	
+
 	@Autowired
 	private ProductService service;
-	
-	
+
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<ProductDto> findByid(@PathVariable Long id) {
 		ProductDto dto = service.findById(id);
 		return ResponseEntity.ok(dto);
 	}
-	
+
 	@GetMapping
-	public ResponseEntity<Page<Object>> findAll(Pageable pageable) {
-		Page<Object> dto = service.findAll(pageable);
+	public ResponseEntity<Page<ProductDto>> findAll(Pageable pageable) {
+		Page<ProductDto> dto = service.findAll(pageable);
 		return ResponseEntity.ok(dto);
 	}
-	
+
 	@PostMapping
-	public ResponseEntity<ProductDto> insert(@RequestBody ProductDto dto) {
-		dto=  service.insertProduct(dto);
+	public ResponseEntity<ProductDto> insert(@Valid @RequestBody ProductDto dto) {
+		dto = service.insertProduct(dto);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(dto.getId()).toUri();
 		return ResponseEntity.created(uri).body(dto);
 	}
-	@PutMapping(value="/{id}")
-	public ResponseEntity<ProductDto> update(@PathVariable Long id, @RequestBody ProductDto dto){
+
+	@PutMapping(value = "/{id}")
+	public ResponseEntity<ProductDto> update(@PathVariable Long id, @Valid @RequestBody ProductDto dto) {
 		dto = service.updateProduct(id, dto);
 		return ResponseEntity.ok(dto);
 	}
-	@DeleteMapping(value="/{id}")
-	public ResponseEntity<Void> delete(@PathVariable Long id){
+
+	@DeleteMapping(value = "/{id}")
+	public ResponseEntity<Void> delete(@PathVariable Long id) {
 		service.delete(id);
-		
+
 		return ResponseEntity.noContent().build();
-		
+
 	}
 }

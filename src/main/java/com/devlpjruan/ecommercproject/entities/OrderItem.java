@@ -9,76 +9,67 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name="tb_order_item")
 public class OrderItem {
-	
-	@EmbeddedId
-	private OrdemItemPK id= new OrdemItemPK();;
-	
-	private Integer quantity;
-	
-	private double price;
+    @EmbeddedId
+    private OrdemItemPK id = new OrdemItemPK();
 
-	public OrderItem() {
-	}
+    private Integer quantity;
+    private Double price;
 
-	public OrderItem(Order order, Product prduct, Integer quantity, double price) {
-		id.setOrder(order);
-		id.setProduct(prduct);
-		this.id = id;
-		this.quantity = quantity;
-		this.price = price;
-	}
+    public OrderItem() {
+    }
 
-	public OrdemItemPK getOrdemItemPK() {
-		return id;
-	}
+    public OrderItem(Order order, Product product, Integer quantity, Double price) {
+        id.setOrder(order);
+        id.setProduct(product);
+        this.quantity = quantity;
+        this.price = price;
+    }
 
-	public void setOrdemItemPK(OrdemItemPK id) {
-		this.id = id;
-	}
+    public Order getOrder() {
+        return id.getOrder();
+    }
 
-	public Integer getQuantity() {
-		return quantity;
-	}
+    public void setOrder(Order order) {
+        id.setOrder(order);
+    }
 
-	public void setQuantity(Integer quantity) {
-		this.quantity = quantity;
-	}
+    public Product getProduct() {
+        return id.getProduct();
+    }
 
-	public double getPrice() {
-		return price;
-	}
+    public void setProduct(Product product) {
+        id.setProduct(product);
+    }
 
-	public void setPrice(double price) {
-		this.price = price;
-	}
-	public void getOrder(Order order) {
-		 id.setOrder(order);
-	}
-	public Order getOrder() {
-		return id.getOrder();
-	}
-	public void setProduct(Product product) {
-		 id.setProduct(product);
-	}
-	public Product getProduct() {
-		return id.getProduct();
-	}
+    public Integer getQuantity() {
+        return quantity;
+    }
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(id);
-	}
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		OrderItem other = (OrderItem) obj;
-		return Objects.equals(id, other.id);
-	}
-	
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        OrderItem orderItem = (OrderItem) o;
+
+        return Objects.equals(id, orderItem.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return id != null ? id.hashCode() : 0;
+    }
+
 }

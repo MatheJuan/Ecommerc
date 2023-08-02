@@ -32,8 +32,6 @@ public class User {
 
 	private String password;
 
-	private List<String> roles;
-
 	@OneToMany(mappedBy = "client")
 	private List<Order> orders = new ArrayList<>();
 
@@ -42,14 +40,12 @@ public class User {
 
 	public User(Long id, String name, String email, String phone, LocalDate birthDate, String password,
 			List<String> roles) {
-		super();
 		this.id = id;
 		this.name = name;
 		this.email = email;
 		this.phone = phone;
 		this.birthDate = birthDate;
 		this.password = password;
-		this.roles = roles;
 	}
 
 	public Long getId() {
@@ -98,14 +94,6 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public List<String> getRoles() {
-		return roles;
-	}
-
-	public void setRoles(List<String> roles) {
-		this.roles = roles;
 	}
 
 	public List<Order> getOrders() {
