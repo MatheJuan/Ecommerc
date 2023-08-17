@@ -8,7 +8,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.devlpjruan.ecommercproject.dto.CategoryDTO;
 import com.devlpjruan.ecommercproject.dto.ProductDto;
+import com.devlpjruan.ecommercproject.dto.ProductMinDto;
+import com.devlpjruan.ecommercproject.entities.Category;
 import com.devlpjruan.ecommercproject.entities.Product;
 import com.devlpjruan.ecommercproject.repository.ProductRepository;
 import com.devlpjruan.ecommercproject.services.exceptions.ResourceNotFoundException;
@@ -29,9 +32,9 @@ public class ProductService {
 	}
 	
 	@Transactional(readOnly = true)
-	public Page<ProductDto> findAll(String name, Pageable pageable) {
-		Page<Product> result = productRepository.searchByName(name	, pageable);
-		return result.map(x -> new ProductDto(x));
+	public Page<ProductMinDto> findAll(String name, Pageable pageable) {
+		Page<Product> result = (Page<Product>) productRepository.searchByName(name	, pageable);
+		return result.map(x -> new ProductMinDto(x));
 	}
 	
 	@Transactional
@@ -60,6 +63,12 @@ public class ProductService {
 		entity.setDescription(dto.getDescription());
 		entity.setPrice(dto.getPrice());
 		entity.setImgUrl(dto.getImgurl());
+		entity.getCategories().clear();
+		for(CategoryDTO catDto : dto.getCategoryList()) {
+			Category cat = new Category();
+			cat.setId(catDto.getId());
+			entity.getCategories().add(cat);
+		}
 	}
 	
 	@Transactional(propagation = Propagation.SUPPORTS)

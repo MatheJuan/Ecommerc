@@ -1,8 +1,13 @@
 package com.devlpjruan.ecommercproject.dto;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.devlpjruan.ecommercproject.entities.Category;
 import com.devlpjruan.ecommercproject.entities.Product;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 
@@ -20,6 +25,9 @@ public class ProductDto {
 	@Positive(message = "O preço deve ser positivo")
 	private double price;
 	private String imgurl;
+	@NotEmpty
+	private List<CategoryDTO> categoryList = new ArrayList<>();
+	
 	
 	public ProductDto() {
 	}
@@ -29,6 +37,9 @@ public class ProductDto {
 		description = entity.getDescription();
 		price = entity.getPrice();
 		imgurl = entity.getImgUrl();
+		for(Category cat : entity.getCategories()) {
+			categoryList.add(new CategoryDTO(cat));
+		}
 	}
 	public ProductDto(Long id, String name, String description, double price, String imgurl) {
 		this.id = id;
@@ -52,6 +63,12 @@ public class ProductDto {
 	}
 	public String getImgurl() {
 		return imgurl;
+	}
+	public List<CategoryDTO> getCategoryList() {
+		return categoryList;
+	}
+	public void setCategoryList(List<CategoryDTO> categoryList) {
+		this.categoryList = categoryList;
 	}
 	
 	
