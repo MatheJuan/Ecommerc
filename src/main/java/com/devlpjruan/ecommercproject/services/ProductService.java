@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.devlpjruan.ecommercproject.dto.CategoryDTO;
+import com.devlpjruan.ecommercproject.dto.CategoryDto;
 import com.devlpjruan.ecommercproject.dto.ProductDto;
 import com.devlpjruan.ecommercproject.dto.ProductMinDto;
 import com.devlpjruan.ecommercproject.entities.Category;
@@ -64,7 +64,7 @@ public class ProductService {
 		entity.setPrice(dto.getPrice());
 		entity.setImgUrl(dto.getImgurl());
 		entity.getCategories().clear();
-		for(CategoryDTO catDto : dto.getCategoryList()) {
+		for(CategoryDto catDto : dto.getCategoryList()) {
 			Category cat = new Category();
 			cat.setId(catDto.getId());
 			entity.getCategories().add(cat);
