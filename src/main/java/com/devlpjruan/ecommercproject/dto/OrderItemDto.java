@@ -5,8 +5,8 @@ import com.devlpjruan.ecommercproject.entities.OrderItem;
 public class OrderItemDto {
 	private Long productId;
 	private String name;
-	private double price;
-	private int quantity;
+	private Double price;
+	private Integer quantity;
 	
 	public OrderItemDto(Long productId, String name, double price, int quatity) {
 		this.productId = productId;
@@ -26,13 +26,13 @@ public class OrderItemDto {
 	public String getName() {
 		return name;
 	}
-	public double getPrice() {
+	public Double getPrice() {
 		return price;
 	}
-	public int getQuatity() {
+	public Integer getQuatity() {
 		return quantity;
 	}
-	public double getSubtotal() {
+	public Double getSubtotal() {
 		return price * quantity;
 	}
 	

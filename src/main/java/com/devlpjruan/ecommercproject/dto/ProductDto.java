@@ -25,6 +25,7 @@ public class ProductDto {
 	@Positive(message = "O preço deve ser positivo")
 	private double price;
 	private String imgurl;
+	
 	@NotEmpty
 	private List<CategoryDto> categoryList = new ArrayList<>();
 	

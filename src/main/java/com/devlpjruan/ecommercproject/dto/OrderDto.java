@@ -8,6 +8,8 @@ import com.devlpjruan.ecommercproject.entities.Order;
 import com.devlpjruan.ecommercproject.entities.OrderItem;
 import com.devlpjruan.ecommercproject.entities.OrderStatus;
 
+import jakarta.validation.constraints.NotEmpty;
+
 public class OrderDto {
 	
 	private Long id;
@@ -18,7 +20,7 @@ public class OrderDto {
 	
 	private PaymentDto payment;
 	//private double total = totalFinal();
-	
+	@NotEmpty(message = "O pedido deve ter pelo um item!")
 	private List<OrderItemDto> items = new ArrayList<>();
 
 	public OrderDto(Long id, Instant moment, OrderStatus status, ClientDto client, PaymentDto payment) {
@@ -27,14 +29,13 @@ public class OrderDto {
 		this.status = status;
 		this.client = client;
 		this.payment = payment;
-		//this.total= total;
 	}
 	public OrderDto(Order entity) {
-		id = entity.getId();
-		moment = entity.getMoment();
-		status = entity.getStatus();
-		client = new ClientDto(entity.getClient());
-		payment = ((entity.getPayment()==null) ? null : new PaymentDto(entity.getPayment()));
+		this.id = entity.getId();
+		this.moment = entity.getMoment();
+		this.status = entity.getStatus();
+		this.client = new ClientDto(entity.getClient());
+		this.payment = (entity.getPayment()==null) ? null : new PaymentDto(entity.getPayment());
 		for(OrderItem item : entity.getItems()) {
 			OrderItemDto itemDto = new OrderItemDto(item);
 			items.add(itemDto);
@@ -64,7 +65,7 @@ public class OrderDto {
 		return items;
 	}
 	
-	public double totalFinal() {
+	public Double getTotal() {
 		double summ = 0.0;
 		for(OrderItemDto dto : items) {
 			summ += dto.getSubtotal();
