@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import com.devlpjruan.ecommercproject.dto.CustomError;
 import com.devlpjruan.ecommercproject.dto.ValidationError;
 import com.devlpjruan.ecommercproject.services.DatabaseException;
+import com.devlpjruan.ecommercproject.services.exceptions.Forbiddenexception;
 import com.devlpjruan.ecommercproject.services.exceptions.ResourceNotFoundException;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -43,6 +44,13 @@ public class ControllerExceptionHandler<MethodArgumentValidException> {
 				) {
 			err.addError(f.getField(), f.getDefaultMessage());
 		}
+		return ResponseEntity.status(status).body(err);
+	}
+	
+	@ExceptionHandler(Forbiddenexception.class)
+	public ResponseEntity<CustomError> forbidden(Forbiddenexception e, HttpServletRequest request) {
+		HttpStatus status = HttpStatus.FORBIDDEN;
+		CustomError err = new CustomError(Instant.now(), status.value(), e.getMessage(), request.getRequestURI());
 		return ResponseEntity.status(status).body(err);
 	}
 }
