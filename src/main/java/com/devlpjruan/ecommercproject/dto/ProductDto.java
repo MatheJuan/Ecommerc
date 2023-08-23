@@ -8,6 +8,7 @@ import com.devlpjruan.ecommercproject.entities.Product;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 
@@ -21,9 +22,11 @@ public class ProductDto {
 	
 	@Size(min = 10, message="Descrição precisa no minimo 10 caracteres")
 	private String description;
-		
+	
+	@NotNull(message = "O campo não pode ser nulo")
 	@Positive(message = "O preço deve ser positivo")
 	private double price;
+	
 	private String imgurl;
 	
 	@NotEmpty
