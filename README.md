@@ -1,7 +1,7 @@
 # E-commerce APIREST
 
 # Sobre do Projeto
-O projeto é uma API REST desenvolvida em Java 17 e Spring Boot, que conciste em um sistema de comércio eletrônico centrado no gerenciamento de produtos, categorias e dados dos usuários através do controle de perfis. funcionalidades como registrar usuários, fazer consulta de produtos no banco de dados e outros
+O projeto é uma API REST desenvolvida em Java 17 e Spring Boot que conciste em um sistema de comércio eletrônico centrado no gerenciamento de produtos, categorias e dados dos usuários através do controle de perfis. funcionalidades como registrar usuários, fazer consulta de produtos no banco de dados e outros
 
 # Funcionalidades
 * Administrador: CRUD de Produtos
