@@ -68,7 +68,7 @@ java -jar target/ecommercproject.jar
  Certifique-se de que a sua aplicação está em execução localmente antes de executar os testes.  
  
 1. Abra o Postman.  
-2. Importe a coleção de testes do Postman localizada no arquivo src/target/ecommerceProject.postman_collection.json.  
+2. Importe a coleção de testes do Postman localizada no arquivo https://github.com/MatheJuan/Ecommerc/tree/master/docs/postman
 3. Abra a coleção de testes no Postman.  
 4. Execute a coleção para testar os endpoints da aplicação.
 
