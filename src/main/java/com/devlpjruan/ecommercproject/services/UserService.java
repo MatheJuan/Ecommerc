@@ -18,8 +18,6 @@ import com.devlpjruan.ecommercproject.entities.User;
 import com.devlpjruan.ecommercproject.projections.UserDetailsProjection;
 import com.devlpjruan.ecommercproject.repository.UserRepository;
 
-import jakarta.transaction.Transactional;
-
 @Service	
 public class UserService implements UserDetailsService{
 	@Autowired
@@ -46,8 +44,7 @@ public class UserService implements UserDetailsService{
 		Jwt jwtPrincipal = (Jwt) authentication.getPrincipal();
 		String username = jwtPrincipal.getClaim("username");
 
-		
-		Optional<User> user = userRepository.findByEmail(username);
+ 		Optional<User> user = userRepository.findByEmail(username);
 		return user.get();
 		
 		}catch (Exception e) {
@@ -57,7 +54,6 @@ public class UserService implements UserDetailsService{
 	@org.springframework.transaction.annotation.Transactional(readOnly = true)
 	public UserDto getLogin() {
 		User user = authenticated();
-		
 		return new UserDto(user);
 	}
 

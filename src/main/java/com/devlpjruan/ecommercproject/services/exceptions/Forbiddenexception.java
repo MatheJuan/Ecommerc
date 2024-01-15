@@ -1,8 +1,8 @@
 package com.devlpjruan.ecommercproject.services.exceptions;
 
-public class Forbiddenexception extends RuntimeException{
+public class ForbiddenException extends RuntimeException{
 	private static final long serialVersionUID = 1L;
-	public Forbiddenexception(String msg) {
+	public ForbiddenException(String msg) {
 		super(msg);
 
 }

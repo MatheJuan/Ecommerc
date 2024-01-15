@@ -26,6 +26,11 @@ public class ProductService {
 
 	@Transactional(readOnly = true)
 	public ProductDto findById(Long id) {
+		/*
+		Optional<Product> result = productRepository.findById(id);
+		ProductDto dto = result.get();
+		Product product = new Product(dto);
+		*/
 		Product product = productRepository.findById(id).orElseThrow(
 				() -> new ResourceNotFoundException("Recurso não encontrado"));
 		return new ProductDto(product);
@@ -57,20 +62,7 @@ public class ProductService {
 			throw new ResourceNotFoundException("Recurso não encontrado");
 		}
 	}
-	
-	private void DtoToEntity(ProductDto dto, Product entity){
-		entity.setName(dto.getName());
-		entity.setDescription(dto.getDescription());
-		entity.setPrice(dto.getPrice());
-		entity.setImgUrl(dto.getImgurl());
-		entity.getCategories().clear();
-		for(CategoryDto catDto : dto.getCategoryList()) {
-			Category cat = new Category();
-			cat.setId(catDto.getId());
-			entity.getCategories().add(cat);
-		}
-	}
-	
+ 
 	@Transactional(propagation = Propagation.SUPPORTS)
 	public void delete(Long id) {
 		if(!productRepository.existsById(id)) {
@@ -85,4 +77,16 @@ public class ProductService {
 		}
 	}
 	
+	private void DtoToEntity(ProductDto dto, Product entity){
+		entity.setName(dto.getName());
+		entity.setDescription(dto.getDescription());
+		entity.setPrice(dto.getPrice());
+		entity.setImgUrl(dto.getImgurl());
+		entity.getCategories().clear();
+		for(CategoryDto catDto : dto.getCategoryList()) {
+			Category cat = new Category();
+			cat.setId(catDto.getId());
+			entity.getCategories().add(cat);
+		}
+	}
 }

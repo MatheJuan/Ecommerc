@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.devlpjruan.ecommercproject.entities.User;
-import com.devlpjruan.ecommercproject.services.exceptions.Forbiddenexception;
+import com.devlpjruan.ecommercproject.services.exceptions.ForbiddenException;
 
 @Service
 public class AuthServices {
@@ -15,8 +15,8 @@ public class AuthServices {
 	public void validateSelfOrAdmin(long idUser) {
 		User mim = userService.authenticated();
 		
-		if(!mim.hasRole("ROLE_ADMIN") && mim.getId().equals(idUser)) {
-			throw new Forbiddenexception("Acess denied");
+		if(!mim.hasRole("ROLE_ADMIN") && !mim.getId().equals(idUser)) {
+			throw new ForbiddenException("Acess denied");
 		}
 	}
 }

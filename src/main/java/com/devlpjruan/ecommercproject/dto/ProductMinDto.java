@@ -10,6 +10,7 @@ public class ProductMinDto {
 
 		public ProductMinDto() {
 	}
+		
 	public ProductMinDto(Long id, String name, double price, String imgurl) {
 		this.id = id;
 		this.name = name;
