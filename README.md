@@ -1,7 +1,10 @@
 # E-commerce APIREST
 
 # Sobre do Projeto
-O projeto é uma API REST desenvolvida em Java 17 e Spring Boot que conciste em um sistema de comércio eletrônico centrado no gerenciamento de produtos, categorias e dados dos usuários através do controle de perfis. funcionalidades como registrar usuários, fazer consulta de produtos no banco de dados e outros
+O projeto é uma API REST desenvolvida em Java 17 e Spring Boot que consiste em um sistema de comércio eletrônico centrado no gerenciamento de produtos, categorias e dados dos usuários através do controle de perfis. funcionalidades como registrar usuários, fazer consulta de produtos no banco de dados e outros.
+# Modelo Conceitual
+
+![uml](https://github.com/MatheJuan/assets/blob/main/UML-%20Ecommerce-1.png)
 
 # Funcionalidades
 * Administrador: CRUD de Produtos
@@ -21,42 +24,54 @@ possibilidade de filtrar produtos pelo nome,
 fluxo de compra, cliente pode incluir, remover, deletar e modificar a quantidade de produtos no carrinho,
 ao encerrar o pedido, o status é salvo como "aguardando pagamento" no banco de dados
 
+![casosdeuso](https://github.com/MatheJuan/assets/blob/main/Casos%20de%20uso-%20Ecommerce.png)
 ## Controle de Segurança
 
 A aplicação utiliza Spring Security para controle de autenticação e autorização, com a adição do uso de JSON Web Token (JWT) e OAuth2. O JWT é utilizado para autenticação baseada em tokens, enquanto o OAuth2 proporciona uma camada adicional de segurança e controle de acesso.
 
 # Tecnologias Utilizadas
 * Java 17
-* Spring Boot 3
+* Spring Boot 4
 * Hibernate
 * JPA
-* H2 (para testes)
 * PostgreSQL (banco de dados principal)
-* JUnit (para testes)
 * Spring Security
 * JSON Web Token (JWT)
 * OAuth2
 
-# Estrutura do Projeto
-A estrutura do projeto está organizada da seguinte forma:
+## Configuração do Banco de Dados
+PostgreSQL:  
+ URL:jdbc:postgresql://localhost:5432/db_ecommerce  
+ Usuário: postgres  
+ Senha: admin  
 
-src/main/java/com.example.ecommerce: Contém as classes Java do projeto.
-src/main/resources: Contém arquivos de configuração, como application.properties.
-src/test: Contém classes de teste.
-Configuração
-Banco de Dados
-H2 (para testes):
 
-URL: jdbc:h2:mem:testdb
-Usuário: sa
-Senha: (não é necessária)
-PostgreSQL:
+## Como Executar
+Antes de executar o projeto, certifique-se de ter as seguintes ferramentas instaladas na sua máquina:
+ Java 17  
+ Maven 4.0.0  
+```bash
+1. **Clone o Repositório:**
+git clone https://github.com/MatheJuan/Ecommerce
 
-Configurar as propriedades em application.properties para o banco de dados PostgreSQL.
-# Como Executar
-Clone o repositório: git clone https://github.com/seu-usuario/nome-do-repositorio.git
-Importe o projeto em sua IDE preferida.
-Configure o banco de dados conforme as instruções acima.
-Execute o projeto.
-Imagens da Aplicação
-Imagem 1 - Tela Inicial:
+2. **Entrar na pasta do projeto back end**
+cd ecommercproject
+
+3. **Compile o projeto**
+ mvn clean install
+
+4. **Execute o JAR Gerado**
+java -jar target/ecommercproject.jar
+```
+
+# Executando Testes
+ Certifique-se de que a sua aplicação está em execução localmente antes de executar os testes.  
+ 
+1. Abra o Postman.  
+2. Importe a coleção de testes do Postman localizada no arquivo src/target/ecommerceProject.postman_collection.json.  
+3. Abra a coleção de testes no Postman.  
+4. Execute a coleção para testar os endpoints da aplicação.
+
+# AUTOR
+Juan Matheus  
+https://www.linkedin.com/in/ruan-matheus-446ab6285/
