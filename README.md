@@ -64,7 +64,7 @@ cd ecommercproject
 java -jar target/ecommercproject.jar
 ```
 
-# Executando Testes
+# Executando Testes com postman
  Certifique-se de que a sua aplicação está em execução localmente antes de executar os testes.  
  
 1. Abra o Postman.  
